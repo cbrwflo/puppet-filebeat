@@ -2,7 +2,16 @@ Changelog
 =========
 
 ## Unreleased
-[Full Changelog](https://github.com/pcfens/puppet-filebeat/compare/v3.4.0...HEAD)
+[Full Changelog](https://github.com/pcfens/puppet-filebeat/compare/v4.0.0...HEAD)
+
+## [v4.0.0](https://github.com/pcfens/puppet-filebeat/tree/v4.0.0) (unreleased)
+[Full Changelog](https://github.com/pcfens/puppet-filebeat/compare/v3.4.0...v4.0.0)
+
+- Switch from `filebeat::prospector` to `filebeat::input` to reflect the changes
+  in the upstream filebeat configuration.
+- Add support for Filebeat 7
+- Remove support for `registry_file` and `registry_flush` settings (removed in 7.x)
+- Remove `queue_size` parameter
 
 ## [v3.4.0](https://github.com/pcfens/puppet-filebeat/tree/v3.4.0)
 [Full Changelog](https://github.com/pcfens/puppet-filebeat/compare/v3.3.3...v3.4.0)

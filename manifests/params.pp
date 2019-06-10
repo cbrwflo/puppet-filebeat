@@ -12,7 +12,6 @@ class filebeat::params {
   $shutdown_timeout      = '0'
   $beat_name             = $::fqdn
   $tags                  = []
-  $queue_size            = 1000
   $max_procs             = undef
   $config_file_mode      = '0644'
   $config_dir_mode       = '0755'
@@ -20,6 +19,7 @@ class filebeat::params {
   $enable_conf_modules   = false
   $fields                = {}
   $fields_under_root     = false
+  $http                  = {}
   $outputs               = {}
   $shipper               = {}
   $logging               = {}
@@ -46,7 +46,7 @@ class filebeat::params {
       $manage_repo = false
       $manage_apt  = false
       $filebeat_path = '/usr/bin/filebeat'
-      $major_version = '6'
+      $major_version = '7'
     }
     'OpenBSD': {
       $manage_repo = false
@@ -63,7 +63,7 @@ class filebeat::params {
       $manage_repo = true
       $manage_apt  = true
       $filebeat_path = '/usr/share/filebeat/bin/filebeat'
-      $major_version = '6'
+      $major_version = '7'
     }
   }
   case $::kernel {
@@ -76,7 +76,6 @@ class filebeat::params {
       $config_dir_owner  = 'root'
       $config_dir_group  = 'root'
       $modules_dir        = '/etc/filebeat/modules.d'
-      $registry_file     = '/var/lib/filebeat/registry'
       # These parameters are ignored if/until tarball installs are supported in Linux
       $tmp_dir         = '/tmp'
       $install_dir     = undef
@@ -100,7 +99,6 @@ class filebeat::params {
       $config_dir_owner  = 'root'
       $config_dir_group  = 'wheel'
       $modules_dir       = '/usr/local/etc/filebeat.modules.d'
-      $registry_file     = '/var/lib/filebeat/registry'
       $tmp_dir           = '/tmp'
       $service_provider  = undef
       $install_dir       = undef
@@ -116,7 +114,6 @@ class filebeat::params {
       $config_dir_owner  = 'root'
       $config_dir_group  = 'wheel'
       $modules_dir        = '/etc/filebeat/modules.d'
-      $registry_file     = '/var/db/filebeat/.filebeat'
       $tmp_dir           = '/tmp'
       $service_provider  = undef
       $install_dir       = undef
@@ -124,7 +121,7 @@ class filebeat::params {
     }
 
     'Windows' : {
-      $package_ensure   = '5.6.2'
+      $package_ensure   = '7.1.0'
       $config_file_owner = 'Administrator'
       $config_file_group = undef
       $config_dir_owner = 'Administrator'
@@ -132,7 +129,6 @@ class filebeat::params {
       $config_file      = 'C:/Program Files/Filebeat/filebeat.yml'
       $config_dir       = 'C:/Program Files/Filebeat/conf.d'
       $modules_dir      = 'C:/Program Files/Filebeat/modules.d'
-      $registry_file    = 'C:/ProgramData/filebeat/registry'
       $install_dir      = 'C:/Program Files'
       $tmp_dir          = 'C:/Windows/Temp'
       $service_provider = undef
